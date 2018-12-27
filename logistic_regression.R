@@ -100,8 +100,21 @@ plot(allEffects(hyp.out))
 
 ##   1. Use glm to conduct a logistic regression to predict ever worked
 ##      (everwrk) using age (age_p) and marital status (r_maritl).
+
+# Cleaning data the way the examples showed.
+summary(NH11$everwrk)
+NH11$everwrk <- factor(NH11$everwrk, levels=c("1 Yes", "2 No"))
+
+summary(NH11$age_p)
+summary(NH11$r_maritl)
+
+work <- glm(everwrk~age_p+r_maritl, data =NH11, family = "binomial")
+
+---
+
 ##   2. Predict the probability of working for each level of marital
 ##      status.
+
 
 ##   Note that the data is not perfectly clean and ready to be modeled. You
 ##   will need to clean up at least some of the variables before fitting
